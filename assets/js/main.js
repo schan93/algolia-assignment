@@ -1,0 +1,183 @@
+$(document).ready(function () {
+	//Application setup values
+	var APPLICATION_ID = 'DQB9P11KG0';
+	var SEARCH_ONLY_API_KEY = '15e2b97e443188bc7d372444cac5d59e';
+	var RESTAURANTS_INDEX = 'restaurants';
+	var RESTAURANTS_INFO_INDEX = 'restaurants_info';
+	var PARAMS = {
+	  hitsPerPage: 10,
+	  maxValuesPerFacet: 8,
+	  facets: ['food_type'],
+	  disjunctiveFacets: ['rating', 'payment'],
+	  index: RESTAURANTS_INDEX
+	};
+
+	var FACETS_ORDER_OF_DISPLAY = ['food_type', 'rating', 'payment'];
+	var FACETS_LABELS = {food_type: 'Cuisine/Food Type', rating: 'Rating', payment: 'Payment Options'};
+
+
+	// Algolia Search Client + Helper initialization
+	var algolia = algoliasearch(APPLICATION_ID, SEARCH_ONLY_API_KEY);
+	var algoliaHelper = algoliasearchHelper(algolia, RESTAURANTS_INDEX, PARAMS);
+
+	// DOM Binding
+	$searchInput = $('#search-input');
+	$searchInputIcon = $('#search-input-icon');
+	$main = $('main');
+	$sortBySelect = $('#sort-by-select');
+	$hits = $('#hits');
+	$stats = $('#stats');
+	$facets = $('#facets');
+	$pagination = $('#pagination');
+
+	// Hogan templates binding
+	var hitTemplate = Hogan.compile($('#hit-template').text());
+	var statsTemplate = Hogan.compile($('#stats-template').text());
+	var facetTemplate = Hogan.compile($('#facet-template').text());
+	var paginationTemplate = Hogan.compile($('#pagination-template').text());
+	var noResultsTemplate = Hogan.compile($('#no-results-template').text());
+
+	//Search input. Whenever a key is pressed, the query variable grabs that value and the algoliaHelper queries 
+	//for the information in query.
+	$searchInput
+	.on('keyup', function() {
+	  var query = $(this).val();
+	  toggleIconEmptyInput(query);
+	  algoliaHelper.setQuery(query).search();
+	})
+	.focus();
+
+	//Clear the search if we have some information within the searchInput and give focus to the search input
+	$searchInputIcon.on('click', function(e) {
+	  e.preventDefault();
+	  $searchInput.val('').keyup().focus();
+	});
+
+	//Put the empty class on the query if the query is not empty.
+	function toggleIconEmptyInput(query) {
+	  $searchInputIcon.toggleClass('empty', query.trim() !== '');
+	}
+
+	//Once we get the search results, we want to display the results and stats of our search result.
+	algoliaHelper.on('result', function(content, state) {
+		console.log("Content: ", content);
+		renderStats(content);
+	    renderHits(content);
+	    renderFacets(content, state);
+	    renderPagination(content);
+	    handleNoResults(content);
+	});
+
+	//Show Facets when the results are loaded
+	function renderFacets(content, state) {
+	  var facetsHtml = '';
+	  var facetName = 'type';
+	  var facetResult = content.getFacetByName(facetName);
+	  var facetContent = {};
+	  if (facetResult) {
+	    facetContent = {
+	      facet: facetName,
+	      title: FACETS_LABELS[facetName],
+	      values: content.getFacetValues(facetName, {sortBy: ['isRefined:desc', 'count:desc']}),
+	      disjunctive: $.inArray(facetName, PARAMS.disjunctiveFacets) !== -1
+	    };
+	    facetsHtml += facetTemplate.render(facetContent);
+	  }
+	  $facets.html(facetsHtml);
+	}
+
+	//Listens to click on fascet
+	$(document).on('click', '.toggle-refine', function(e) {
+	  e.preventDefault();
+	  algoliaHelper.toggleRefine($(this).data('facet'), $(this).data('value')).search();
+	});
+
+	//Show the pagination "Show more/less"
+	function renderPagination(content) {
+	  var pages = [];
+	  if (content.page > 3) {
+	    pages.push({current: false, number: 1});
+	    pages.push({current: false, number: '...', disabled: true});
+	  }
+	  for (var p = content.page - 3; p < content.page + 3; ++p) {
+	    if (p < 0 || p >= content.nbPages) continue;
+	    pages.push({current: content.page === p, number: p + 1});
+	  }
+	  if (content.page + 3 < content.nbPages) {
+	    pages.push({current: false, number: '...', disabled: true});
+	    pages.push({current: false, number: content.nbPages});
+	  }
+	  var pagination = {
+	    pages: pages,
+	    prev_page: content.page > 0 ? content.page : false,
+	    next_page: content.page + 1 < content.nbPages ? content.page + 2 : false
+	  };
+	  $pagination.html(paginationTemplate.render(pagination));
+	}
+
+	//Handling pagination click events
+	$(document).on('click', '.go-to-page', function(e) {
+	  e.preventDefault();
+	  $('html, body').animate({scrollTop: 0}, '500', 'swing');
+	  algoliaHelper.setCurrentPage(+$(this).data('page') - 1).search();
+	});
+
+	//Function to call the $hits variable and use the hitTemplate to show the results on the page
+	function renderHits(content) {
+		console.log("Hits template: " + hitTemplate.render(content));
+	  $hits.html(hitTemplate.render(content));
+	}
+
+	function renderStats(content) {
+	  var stats = {
+	    nbHits: content.nbHits,
+	    nbHits_plural: content.nbHits !== 1,
+	    processingTimeMS: content.processingTimeMS
+	  };
+	  $stats.html(statsTemplate.render(stats));
+	}
+
+	//Show no results in search results section
+	function handleNoResults(content) {
+	  if (content.nbHits > 0) {
+	    $main.removeClass('no-results');
+	    return;
+	  }
+	  $main.addClass('no-results');
+
+	  var filters = [];
+	  var i;
+	  var j;
+	  for (i in algoliaHelper.state.facetsRefinements) {
+	    filters.push({
+	      class: 'toggle-refine',
+	      facet: i, facet_value: algoliaHelper.state.facetsRefinements[i],
+	      label: FACETS_LABELS[i] + ': ',
+	      label_value: algoliaHelper.state.facetsRefinements[i]
+	    });
+	  }
+	  for (i in algoliaHelper.state.disjunctiveFacetsRefinements) {
+	    for (j in algoliaHelper.state.disjunctiveFacetsRefinements[i]) {
+	      filters.push({
+	        class: 'toggle-refine',
+	        facet: i,
+	        facet_value: algoliaHelper.state.disjunctiveFacetsRefinements[i][j],
+	        label: FACETS_LABELS[i] + ': ',
+	        label_value: algoliaHelper.state.disjunctiveFacetsRefinements[i][j]
+	      });
+	    }
+	  }
+	  for (i in algoliaHelper.state.numericRefinements) {
+	    for (j in algoliaHelper.state.numericRefinements[i]) {
+	      filters.push({
+	        class: 'remove-numeric-refine',
+	        facet: i,
+	        facet_value: j,
+	        label: FACETS_LABELS[i] + ' ',
+	        label_value: j + ' ' + algoliaHelper.state.numericRefinements[i][j]
+	      });
+	    }
+	  }
+	  $hits.html(noResultsTemplate.render({query: content.query, filters: filters}));
+	}
+});
