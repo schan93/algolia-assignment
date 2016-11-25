@@ -4,9 +4,7 @@ body {
 }
 
 .welcome-container {
-  margin: 50px 100px 50px 100px;
-  text-align: center;
-  font-size: 2em;
+  margin: 50px 100px;
   background: url('/resources/graphics/background.png') #ffffff;	
   p {
     margin: 5px;
@@ -19,16 +17,8 @@ body {
 // ------------------------- */
 
 header {
-	position: relative;
 	height: 80px;
 	background-color: #1C688E;
-}
-header img {
-	position: absolute;
-	top: 9px;
-	left: 0;
-	float: left;
-	max-width: 23%;
 }
 #search-input {
 	margin-top: 20px;
@@ -36,7 +26,8 @@ header img {
 	font-size: 14px;
 	font-weight: 100;
 	width: 92%;
-	padding: 10px 10px 10px;
+	margin-left: 20px;
+	padding: 10px 10px;
 }
 #search-input, #search-input:focus {
 	transition: border-color .3s ease-in;
@@ -62,22 +53,21 @@ header img {
 .hit {
 	font-size: 0;
 	padding: 8px 0;
-	border-bottom: 1px solid #eee;
 }
 .hit-image {
 	display: inline-block;
 	width: 16%;
 }
 .hit-image img {
+	border-radius: 5px;
+	border-bottom: 1px solid #eee;
 	max-width: 100%;
 	max-height: 180px;
 }
 .hit-content {
 	font-size: 13px;
-	font-weight: 300;
 	display: inline-block;
-	width: 83%;
-	margin-left: 1%;
+	margin-left: 20px;
 	vertical-align: top;
 }
 .hit-name {
@@ -190,8 +180,25 @@ header img {
 // ------------------------- */
 
 #stats {
-	min-height: 18px;
+	//Make sure that stats template goes above the hits template
+	background-color: #ffffff;
+	//Don't show the border underneath the letters
+	overflow: hidden;
+    position: relative;
 }
+
+//TODO: Make sure that as you scale the browser, the line goes with it
+#stats:after {
+	//Show the border after the found results
+	content:"";
+	position: fixed;
+	width: 61%;
+	//Show line relative sizing to wording & 1 em away
+    height: 1em;
+    margin: 0 5em 0 1em;
+	border-bottom: 1px solid #E6E6E6;
+}
+
 #stats .found-in {
 	font-size: 12px;
 	color: #999;
