@@ -40,7 +40,6 @@ gulp.task('less', function() {
     .pipe(browserSync.stream());
 });
 
-
 gulp.task('default', ['serve']);
 gulp.task('server', ['serve']);
 gulp.task('dev', ['watch']);

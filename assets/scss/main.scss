@@ -4,13 +4,14 @@ body {
 }
 
 .welcome-container {
-  margin: 50px 0 0 0;
+  margin: 50px 100px 50px 100px;
   text-align: center;
   font-size: 2em;
-
+  background: url('/resources/graphics/background.png') #ffffff;	
   p {
     margin: 5px;
   }
+
 }
 
 
@@ -20,7 +21,7 @@ body {
 header {
 	position: relative;
 	height: 80px;
-	margin-top: 40px;
+	background-color: #1C688E;
 }
 header img {
 	position: absolute;
@@ -30,21 +31,20 @@ header img {
 	max-width: 23%;
 }
 #search-input {
-	font-size: 28px;
+	margin-top: 20px;
+	border-radius: 5px;
+	font-size: 14px;
 	font-weight: 100;
-	width: 74%;
-	margin-left: 26%;
-	padding: 10px 0 6px;
-	border: none;
-	border-bottom: 5px solid #eee;
+	width: 92%;
+	padding: 10px 10px 10px;
 }
 #search-input, #search-input:focus {
 	transition: border-color .3s ease-in;
 	outline: 0;
 }
 #search-input:focus {
-	border-color: #ed5565;
 }
+
 #search-input::-webkit-input-placeholder, #search-input:-moz-placeholder, #search-input:-moz-placeholder, #search-input:-ms-input-placeholder {
 	font-weight: 100;
 	color: #999;
@@ -56,9 +56,8 @@ header img {
 // ------------------------- */
 
 #hits {
-	margin: 4px 0;
 	padding: 10px 0;
-	border-top: 2px solid #eee;
+	background-color: #ffffff;
 }
 .hit {
 	font-size: 0;

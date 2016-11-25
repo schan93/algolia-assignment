@@ -5,8 +5,8 @@ $(document).ready(function () {
 	var RESTAURANTS_INDEX = 'restaurants';
 	var RESTAURANTS_INFO_INDEX = 'restaurants_info';
 	var PARAMS = {
-	  hitsPerPage: 10,
-	  maxValuesPerFacet: 8,
+	  hitsPerPage: 3,
+	  maxValuesPerFacet: 7,
 	  facets: ['food_type'],
 	  disjunctiveFacets: ['rating', 'payment'],
 	  index: RESTAURANTS_INDEX
@@ -124,7 +124,6 @@ $(document).ready(function () {
 
 	//Function to call the $hits variable and use the hitTemplate to show the results on the page
 	function renderHits(content) {
-		console.log("Hits template: " + hitTemplate.render(content));
 	  $hits.html(hitTemplate.render(content));
 	}
 
