@@ -15,10 +15,11 @@ body {
 #left-column {
 	float: left;
 	width: 23%;
+	background-color: #ffffff;
 }
 #right-column {
-	width: 74%;
-	margin-left: 26%;
+	width: 78%;
+	margin-left: 22%;
 }
 
 
@@ -221,11 +222,8 @@ header {
 .facet {
 	margin-bottom: 24px;
 }
-.facet h5 {
-	margin: 0 0 6px;
-	padding: 0 0 6px;
-	text-transform: uppercase;
-	border-bottom: 2px solid #eee;
+.facet h3 {
+	margin: 15px 10px;
 }
 .facet ul {
 	margin: 0;
@@ -245,8 +243,7 @@ header {
 	color: #ed5565;
 }
 .facet .facet-link.facet-refined:hover {
-	text-decoration: line-through;
-	color: #ed5565;
+	color: #ffffff;
 }
 .facet-count {
 	position: relative;
