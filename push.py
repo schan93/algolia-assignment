@@ -62,8 +62,7 @@ def createIndex(appId, apiKey, indexName):
   settings = {
     'customRanking': ['desc(stars_count)', 'desc(reviews_count)'],
     'searchableAttributes': ['name', 'food_type', 'address', 'neighborhood', 'city'],
-    'attributesForFaceting': ['food_type', 'stars_count', 'payment_options'],
-    'ranking': ['typo', 'geo', 'words', 'attribute', 'proximity', 'exact', 'custom']
+    'attributesForFaceting': ['food_type', 'stars_count', 'payment_options']
   }
 
   index.set_settings(settings)
