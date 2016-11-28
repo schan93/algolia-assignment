@@ -7,30 +7,27 @@ body {
 .welcome-container {
   margin: 50px 100px;
   background: url("/resources/graphics/background.png") #ffffff; }
-  /* line 9, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
-  .welcome-container p {
-    margin: 5px; }
 
-/* line 15, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 12, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #left-column {
   float: left;
   width: 23%;
   background-color: #ffffff;
   border-right: 1px solid #CDCDCD; }
 
-/* line 21, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 18, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #right-column {
   width: 78%;
   margin-left: 22%; }
 
 /* SEARCH INPUT
 // ------------------------- */
-/* line 30, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 27, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 header {
   height: 80px;
   background-color: #1C688E; }
 
-/* line 34, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 31, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #search-input {
   margin-top: 20px;
   border-radius: 5px;
@@ -40,84 +37,95 @@ header {
   margin-left: 20px;
   padding: 10px 10px; }
 
-/* line 43, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 40, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #search-input, #search-input:focus {
   transition: border-color .3s ease-in;
   outline: 0; }
 
-/* line 50, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 47, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #search-input::-webkit-input-placeholder, #search-input:-moz-placeholder, #search-input:-moz-placeholder, #search-input:-ms-input-placeholder {
   font-weight: 100;
   color: #999; }
 
 /* HITS
 // ------------------------- */
-/* line 60, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 57, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #hits {
   padding: 0 0 10px 44px;
   background-color: #ffffff; }
 
-/* line 64, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 61, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .hit {
   font-size: 0;
   padding: 8px 0; }
 
-/* line 68, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 65, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .hit-image {
-  display: inline-block;
-  width: 16%; }
+  display: inline-block; }
 
-/* line 72, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 68, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .hit-image img {
   border-radius: 5px;
   border-bottom: 1px solid #eee;
-  max-width: 100%;
   max-height: 180px; }
 
-/* line 78, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 73, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .hit-content {
   font-size: 13px;
   display: inline-block;
   margin-left: 20px;
   vertical-align: top; }
 
-/* line 84, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 79, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .hit-name {
   font-weight: bold;
   margin-top: 0; }
 
-/* line 88, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 83, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .hit-content .hit-price, .hit-content {
   font-weight: normal;
   margin-top: 0; }
 
-/* line 92, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 87, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .hit-content em {
   font-style: normal;
   background: #fbdde0; }
 
-/* line 96, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 91, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .hit-content .hit-description {
-  color: #999; }
+  color: #707070; }
+
+/* line 95, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+.hit .hit-content span.stars span.stars span {
+  display: inline-block;
+  background: url("/resources/graphics/stars-icons.png") 0 36px repeat-x;
+  width: 175px;
+  height: 80px; }
+
+/* line 102, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+.hit .hit-content span.stars {
+  max-width: 80px;
+  display: inline-block;
+  background-position: 0 0; }
 
 /* PAGINATION
 // ------------------------- */
-/* line 105, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 112, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #pagination {
   margin-top: 60px; }
 
-/* line 108, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 115, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #pagination ul {
   font-size: 0;
   list-style-type: none;
   text-align: center; }
 
-/* line 113, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 120, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #pagination li {
   font-size: 14px;
   display: inline; }
 
-/* line 117, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 124, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #pagination a {
   padding: 8px 12px;
   text-decoration: none;
@@ -125,85 +133,49 @@ header {
   border: 1px solid #eee;
   border-right: none; }
 
-/* line 124, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 131, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #pagination a:hover {
   background: #f5f5f5; }
 
-/* line 127, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 134, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #pagination li:first-child a {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px; }
 
-/* line 131, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 138, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #pagination li:last-child a {
   border-right: 1px solid #eee;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px; }
 
-/* line 136, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 143, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #pagination li.active a {
   color: white;
   border-color: #ed5565;
   background: #ed5565; }
 
-/* line 141, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 148, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #pagination li.active a:hover {
   cursor: default; }
 
-/* line 144, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 151, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #pagination li.disabled a {
   cursor: not-allowed; }
 
-/* line 147, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 154, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #pagination li.disabled a:hover {
   background: none; }
 
-/* SORT-BY
-// ------------------------- */
-/* line 156, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
-#sort-by {
-  font-weight: 300;
-  position: relative;
-  float: right;
-  color: #999; }
-
-/* line 162, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
-#sort-by select {
-  font-size: 16px;
-  padding-right: 14px;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background: none;
-  -webkit-appearance: none;
-  -moz-appearance: none; }
-
-/* line 172, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
-#sort-by .caret {
-  position: absolute;
-  top: 8px;
-  right: 0;
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 2px;
-  vertical-align: middle;
-  pointer-events: none;
-  color: #000;
-  border-top: 4px dashed;
-  border-right: 4px solid transparent;
-  border-left: 4px solid transparent; }
-
 /* STATS
 // ------------------------- */
-/* line 193, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 162, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #stats {
   background-color: #ffffff;
   padding: 30px 30px;
   overflow: hidden;
   font-weight: bold; }
 
-/* line 203, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 172, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #stats:after {
   content: "";
   position: absolute;
@@ -213,7 +185,7 @@ header {
   margin: 0 5em 0 1em;
   border-bottom: 1px solid #E6E6E6; }
 
-/* line 215, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 184, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #stats .found-in {
   font-weight: normal;
   font-size: 12px;
@@ -221,40 +193,40 @@ header {
 
 /* FACETS
 // ------------------------- */
-/* line 227, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 196, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .facet {
   margin-bottom: 24px; }
 
-/* line 230, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 199, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .facet h3 {
   margin: 45px 10px; }
 
-/* line 233, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 202, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .facet ul {
   margin: 0;
   padding: 0;
   list-style-type: none; }
 
-/* line 238, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 207, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .facet li {
   margin-bottom: 3px; }
 
-/* line 241, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 210, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .facet-link {
   font-size: 13px;
   line-height: 1.2;
   text-decoration: none;
   color: #000; }
 
-/* line 247, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 216, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .facet-link:hover, .facet-link.facet-refined {
-  color: #ed5565; }
-
-/* line 250, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
-.facet .facet-link.facet-refined:hover {
   color: #ffffff; }
 
-/* line 253, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 219, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+.facet .facet-link.facet-refined:hover {
+  color: #ed5565; }
+
+/* line 222, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .facet-count {
   position: relative;
   top: 3px;
@@ -262,13 +234,13 @@ header {
   color: #999; }
 
 /* Checkboxes */
-/* line 260, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 229, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .facet-disjunctive {
   font-weight: normal;
   position: relative;
   margin-left: 18px; }
 
-/* line 265, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 234, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .facet-disjunctive:before {
   position: absolute;
   top: 1px;
@@ -278,38 +250,38 @@ header {
   content: '';
   background: url(../img/checkbox_icons.png) 0 0 no-repeat; }
 
-/* line 274, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 243, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .facet-disjunctive:hover:before {
   background-position: -24px 0; }
 
-/* line 277, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 246, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .facet-disjunctive.facet-refined:before {
   background-position: -48px 0; }
 
-/* line 280, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 249, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .facet-disjunctive.facet-refined:hover:before {
   background-position: -72px 0; }
 
 /* No-result
 // ------------------------- */
-/* line 289, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 258, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 .no-results #pagination, .no-results #sort-by, .no-results #stats, .no-results #facets {
   display: none; }
 
-/* line 292, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 261, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #no-results-message {
   text-align: center; }
 
-/* line 295, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 264, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #no-results-message p {
   font-size: 28px;
   font-weight: 100; }
 
-/* line 299, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 268, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #no-results-message ul {
   list-style-type: none; }
 
-/* line 302, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 271, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #no-results-message li {
   font-size: 12px;
   position: relative;
@@ -320,12 +292,12 @@ header {
   border: 1px solid #ddd;
   border-radius: 12px; }
 
-/* line 312, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 281, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #no-results-message li span.value {
   font-weight: bold;
   color: #000; }
 
-/* line 316, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 285, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #no-results-message li a.remove img {
   position: absolute;
   top: 3px;
@@ -335,11 +307,11 @@ header {
   height: 17px;
   opacity: .5; }
 
-/* line 325, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 294, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 #no-results-message li a.remove:hover img {
   opacity: 1; }
 
-/* line 328, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 297, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 a.clear-all {
   font-size: 12px;
   line-height: 1;
@@ -351,26 +323,26 @@ a.clear-all {
   border: 2px solid #ddd;
   border-radius: 4px; }
 
-/* line 339, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 308, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 a.clear-all:hover {
   transition: border-color .3s ease-in;
   border-color: #999; }
 
 /* FOOTER
 // ------------------------- */
-/* line 349, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 318, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 footer {
   font-size: 14px;
   margin-top: 200px;
   margin-bottom: 24px;
   text-align: center; }
 
-/* line 355, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 324, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 footer a {
   text-decoration: none;
   color: #ed5565; }
 
-/* line 359, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
+/* line 328, /Users/schan/Projects/algolia-assignment/assets/scss/main.scss */
 footer a:hover {
   text-decoration: underline;
   color: #ed5565; }

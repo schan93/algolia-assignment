@@ -5,10 +5,7 @@ body {
 
 .welcome-container {
   margin: 50px 100px;
-  background: url('/resources/graphics/background.png') #ffffff;	
-  p {
-    margin: 5px;
-  }
+  background: url('/resources/graphics/background.png') #ffffff;
 
 }
 
@@ -67,12 +64,10 @@ header {
 }
 .hit-image {
 	display: inline-block;
-	width: 16%;
 }
 .hit-image img {
 	border-radius: 5px;
 	border-bottom: 1px solid #eee;
-	max-width: 100%;
 	max-height: 180px;
 }
 .hit-content {
@@ -94,10 +89,22 @@ header {
 	background: #fbdde0;
 }
 .hit-content .hit-description {
-	color: #999;
+	color: #707070;
 }
 
+.hit .hit-content span.stars span.stars span {
+    display: inline-block;
+    background: url('/resources/graphics/stars-icons.png') 0 36px repeat-x;
+    width: 175px;
+    height: 80px;
+}
 
+.hit .hit-content span.stars {
+	max-width: 80px;
+	display: inline-block;
+
+    background-position: 0 0;
+}
 
 /* PAGINATION
 // ------------------------- */
@@ -147,44 +154,6 @@ header {
 #pagination li.disabled a:hover {
 	background: none;
 }
-
-
-
-/* SORT-BY
-// ------------------------- */
-
-#sort-by {
-	font-weight: 300;
-	position: relative;
-	float: right;
-	color: #999;
-}
-#sort-by select {
-	font-size: 16px;
-	padding-right: 14px;
-	cursor: pointer;
-	border: none;
-	outline: none;
-	background: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-}
-#sort-by .caret {
-	position: absolute;
-	top: 8px;
-	right: 0;
-	display: inline-block;
-	width: 0;
-	height: 0;
-	margin-left: 2px;
-	vertical-align: middle;
-	pointer-events: none;
-	color: #000;
-	border-top: 4px dashed;
-	border-right: 4px solid transparent;
-	border-left: 4px solid transparent;
-}
-
 
 
 /* STATS
@@ -245,10 +214,10 @@ header {
 	color: #000;
 }
 .facet-link:hover, .facet-link.facet-refined {
-	color: #ed5565;
+	color: #ffffff;
 }
 .facet .facet-link.facet-refined:hover {
-	color: #ffffff;
+	color: #ed5565;
 }
 .facet-count {
 	position: relative;

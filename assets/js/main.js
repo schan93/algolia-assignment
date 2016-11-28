@@ -224,5 +224,4 @@ $(document).ready(function () {
         sessionStorage.setItem('location.longitude', '');
 		algoliaHelper.search();
 	}
-
 });

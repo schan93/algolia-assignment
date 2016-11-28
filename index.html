@@ -41,7 +41,8 @@
         </div>
         <div class="hit-content">
           <h3 class="hit-name">{{{ name }}}</h3>
-          <p class="hit-description">{{{ address }}} | {{{ area }}} | ${{ price }} </p>
+          <span class="stars">{{{stars_count}}}<p class="hit-description">{{{ reviews_count }}}</p></span> 
+          <p class="hit-description">{{{ food_type }}} | {{{ neighborhood }}} | {{ price_range }} </p>
         </div>
       </div>
       {{/hits}}
