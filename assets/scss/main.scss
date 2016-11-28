@@ -16,6 +16,7 @@ body {
 	float: left;
 	width: 23%;
 	background-color: #ffffff;
+	border-right: 1px solid #CDCDCD;
 }
 #right-column {
 	width: 78%;
@@ -57,7 +58,7 @@ header {
 // ------------------------- */
 
 #hits {
-	padding: 10px 0;
+	padding: 0 0 10px 44px;
 	background-color: #ffffff;
 }
 .hit {
@@ -192,26 +193,30 @@ header {
 #stats {
 	//Make sure that stats template goes above the hits template
 	background-color: #ffffff;
+	padding: 30px 30px;
 	//Don't show the border underneath the letters
 	overflow: hidden;
-    position: relative;
+	font-weight: bold;
 }
 
 //TODO: Make sure that as you scale the browser, the line goes with it
 #stats:after {
 	//Show the border after the found results
 	content:"";
-	position: fixed;
+	position: absolute;
 	width: 61%;
 	//Show line relative sizing to wording & 1 em away
     height: 1em;
+    font-size: 14px;
     margin: 0 5em 0 1em;
 	border-bottom: 1px solid #E6E6E6;
 }
 
 #stats .found-in {
+    //Override the h3 bold font weight
+	font-weight: normal;
 	font-size: 12px;
-	color: #999;
+	color: #000000;
 }
 
 
@@ -223,7 +228,7 @@ header {
 	margin-bottom: 24px;
 }
 .facet h3 {
-	margin: 15px 10px;
+	margin: 45px 10px;
 }
 .facet ul {
 	margin: 0;

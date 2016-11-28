@@ -140,10 +140,11 @@ $(document).ready(function () {
 	}
 
 	function renderStats(content) {
+	  //Divide the processingTime by 1000 because need to show as seconds, not MS
 	  var stats = {
 	    nbHits: content.nbHits,
 	    nbHits_plural: content.nbHits !== 1,
-	    processingTimeMS: content.processingTimeMS
+	    processingTimeMS: parseFloat(content.processingTimeMS / 1000).toFixed(3)
 	  };
 	  $stats.html(statsTemplate.render(stats));
 	}
