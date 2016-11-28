@@ -2,18 +2,16 @@ $(document).ready(function () {
 	//Application setup values
 	var APPLICATION_ID = 'DQB9P11KG0';
 	var SEARCH_ONLY_API_KEY = '15e2b97e443188bc7d372444cac5d59e';
-	var RESTAURANTS_INDEX = 'restaurants';
-	var RESTAURANTS_INFO_INDEX = 'restaurants_info';
+	var RESTAURANTS_INDEX = 'restaurants_list';
 	var PARAMS = {
 	  hitsPerPage: 3,
 	  maxValuesPerFacet: 7,
-	  facets: ['food_type'],
-	  disjunctiveFacets: ['rating', 'payment'],
+	  facets: ['food_type', 'stars_count', 'payment_options'],
 	  index: RESTAURANTS_INDEX
 	};
 
-	var FACETS_ORDER_OF_DISPLAY = ['food_type', 'rating', 'payment'];
-	var FACETS_LABELS = {food_type: 'Cuisine/Food Type', rating: 'Rating', payment: 'Payment Options'};
+	var FACETS_ORDER_OF_DISPLAY = ['food_type', 'stars_count', 'payment_options'];
+	var FACETS_LABELS = {food_type: 'Cuisine/Food Type', stars_count: 'Rating', payment_options: 'Payment Options'};
 
 
 	// Algolia Search Client + Helper initialization
@@ -37,13 +35,26 @@ $(document).ready(function () {
 	var paginationTemplate = Hogan.compile($('#pagination-template').text());
 	var noResultsTemplate = Hogan.compile($('#no-results-template').text());
 
+	// Initial search which gets the first search by location. 
+	//There will be some latency when getting the first search, but that is because we need to get the user's location
+	//Before we can query
+	getLocation();
+
 	//Search input. Whenever a key is pressed, the query variable grabs that value and the algoliaHelper queries 
 	//for the information in query.
 	$searchInput
-	.on('keyup', function() {
-	  var query = $(this).val();
-	  toggleIconEmptyInput(query);
-	  algoliaHelper.setQuery(query).search();
+	.on('input propertychange', function(e) {
+	  // toggleIconEmptyInput(query);
+	  var query = e.currentTarget.value;
+	  // algoliaHelper.setQueryParameter('aroundLatLng', '37.559720, -122.271010');
+	  // getLocation(query);
+	  var lat = sessionStorage.getItem('location.latitude');
+	  var lng = sessionStorage.getItem('location.longitude');
+	  if(lat && lng) {
+	  	algoliaHelper.setQuery(query).setQueryParameter(lat + ' , ' + lng).search();
+	  } else {
+	  	algoliaHelper.setQuery(query).search();
+	  }
 	})
 	.focus();
 
@@ -60,26 +71,27 @@ $(document).ready(function () {
 
 	//Once we get the search results, we want to display the results and stats of our search result.
 	algoliaHelper.on('result', function(content, state) {
-		console.log("Content: ", content);
-		renderStats(content);
-	    renderHits(content);
-	    renderFacets(content, state);
-	    renderPagination(content);
-	    handleNoResults(content);
+		// console.log("Content: ", content);
+	  renderStats(content);
+	  renderHits(content);
+	  renderFacets(content, state);
+	  renderPagination(content);
+	  handleNoResults(content);
 	});
 
-	//Show Facets when the results are loaded
+	//Show Facets when the results are loaded.
 	function renderFacets(content, state) {
 	  var facetsHtml = '';
-	  var facetName = 'type';
-	  var facetResult = content.getFacetByName(facetName);
-	  var facetContent = {};
-	  if (facetResult) {
+	  //Loop through all the facets that we want to display and show them on the left hand side
+	  for (var facetIndex = 0; facetIndex < FACETS_ORDER_OF_DISPLAY.length; ++facetIndex) {
+	    var facetName = FACETS_ORDER_OF_DISPLAY[facetIndex];
+	    var facetResult = content.getFacetByName(facetName);
+	    if (!facetResult) continue;
+
 	    facetContent = {
 	      facet: facetName,
 	      title: FACETS_LABELS[facetName],
 	      values: content.getFacetValues(facetName, {sortBy: ['isRefined:desc', 'count:desc']}),
-	      disjunctive: $.inArray(facetName, PARAMS.disjunctiveFacets) !== -1
 	    };
 	    facetsHtml += facetTemplate.render(facetContent);
 	  }
@@ -179,4 +191,37 @@ $(document).ready(function () {
 	  }
 	  $hits.html(noResultsTemplate.render({query: content.query, filters: filters}));
 	}
+
+	//Function to get the user's location so that queries are based on user's current location
+	function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          //Use session storage to store the location of a user so that we don't always have to be in this
+          //Callback to get the location coordinates. This can be stored in statically because we can assume 
+          //He or she will be in one location, and session storage will be updated once you clear the browser
+          sessionStorage.setItem('location.latitude', position.coords.latitude);
+          sessionStorage.setItem('location.longitude', position.coords.longitude);
+          algoliaHelper.setQueryParameter('aroundLatLng', pos.lat + ' , ' + pos.lng).search();
+        }, function(){
+        	//There is an error getting the location for whatever reason
+        	locationError(true, pos);
+        });
+      } else {
+      	locationError(false, pos);
+      }
+	}
+
+	function locationError(hasLocation, pos) {
+		var alertMessage = hasLocation ? 'There was an error getting your geolocation, but search will still work.' : 'Your browser does not support geolocation, but search will still work.';
+		alert(alertMessage);
+		//No location to store
+		sessionStorage.setItem('location.latitude', '');
+        sessionStorage.setItem('location.longitude', '');
+		algoliaHelper.search();
+	}
+
 });
