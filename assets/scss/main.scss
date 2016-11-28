@@ -50,7 +50,6 @@ header {
 }
 
 
-
 /* HITS
 // ------------------------- */
 
@@ -60,7 +59,7 @@ header {
 }
 .hit {
 	font-size: 0;
-	padding: 8px 0;
+	padding-bottom: 16px;
 }
 .hit-image {
 	display: inline-block;
@@ -68,7 +67,8 @@ header {
 .hit-image img {
 	border-radius: 5px;
 	border-bottom: 1px solid #eee;
-	max-height: 180px;
+	max-height: 100px;
+	max-width: 100px;
 }
 .hit-content {
 	font-size: 13px;
@@ -89,11 +89,10 @@ header {
 	background: #fbdde0;
 }
 .hit-content .hit-description {
-	color: #707070;
+	color: #bdbdbd;
 }
 
 .hit .hit-content span.stars span.stars span {
-    display: inline-block;
     background: url('/resources/graphics/stars-icons.png') 0 36px repeat-x;
     width: 175px;
     height: 80px;
@@ -101,8 +100,6 @@ header {
 
 .hit .hit-content span.stars {
 	max-width: 80px;
-	display: inline-block;
-
     background-position: 0 0;
 }
 
@@ -162,18 +159,18 @@ header {
 #stats {
 	//Make sure that stats template goes above the hits template
 	background-color: #ffffff;
-	padding: 30px 30px;
+	padding: 20px 30px;
 	//Don't show the border underneath the letters
 	overflow: hidden;
 	font-weight: bold;
 }
 
 //TODO: Make sure that as you scale the browser, the line goes with it
-#stats:after {
+#stats h3:after {
 	//Show the border after the found results
 	content:"";
 	position: absolute;
-	width: 61%;
+	width: 39%;
 	//Show line relative sizing to wording & 1 em away
     height: 1em;
     font-size: 14px;
@@ -184,7 +181,7 @@ header {
 #stats .found-in {
     //Override the h3 bold font weight
 	font-weight: normal;
-	font-size: 12px;
+	font-size: 13px;
 	color: #000000;
 }
 
@@ -194,10 +191,12 @@ header {
 // ------------------------- */
 
 .facet {
-	margin-bottom: 24px;
+	margin-bottom: 44px;
 }
 .facet h3 {
-	margin: 45px 10px;
+	margin-top: 35px;
+	margin-left: 20px;
+	margin-right: 10px;
 }
 .facet ul {
 	margin: 0;
@@ -205,52 +204,36 @@ header {
 	list-style-type: none;
 }
 .facet li {
-	margin-bottom: 3px;
+	margin: 5px 30px;
 }
-.facet-link {
-	font-size: 13px;
-	line-height: 1.2;
-	text-decoration: none;
-	color: #000;
-}
-.facet-link:hover, .facet-link.facet-refined {
+
+.facet li:hover {
+	background-color: #2897C5;
 	color: #ffffff;
 }
-.facet .facet-link.facet-refined:hover {
-	color: #ed5565;
+
+.facet li:active {
+	background-color: #2897C5;
+	color: #ffffff;
 }
+
+.facet-link {
+	font-size: 14px;
+	line-height: 1.3;
+	text-decoration: none;
+	display: block;
+	color: #000;
+}
+
+.facet-count:hover {
+	color: #ffffff;
+}
+
 .facet-count {
 	position: relative;
-	top: 3px;
 	float: right;
-	color: #999;
+	color: #bdbdbd;
 }
-/* Checkboxes */
-.facet-disjunctive {
-	font-weight: normal;
-	position: relative;
-	margin-left: 18px;
-}
-.facet-disjunctive:before {
-	position: absolute;
-	top: 1px;
-	left: -18px;
-	width: 16px;
-	height: 16px;
-	content: '';
-	background: url(../img/checkbox_icons.png) 0 0 no-repeat;
-}
-.facet-disjunctive:hover:before {
-	background-position: -24px 0;
-}
-.facet-disjunctive.facet-refined:before {
-	background-position: -48px 0;
-}
-.facet-disjunctive.facet-refined:hover:before {
-	background-position: -72px 0;
-}
-
-
 
 /* No-result
 // ------------------------- */

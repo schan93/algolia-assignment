@@ -23,7 +23,7 @@
     <div id="left-column">
       <div id="facets"></div>
     </div>
-    <!-- Right Column -->
+    <!-- Right Column showing the stats and hits-->
     <div id="right-column">
       <div id="stats"></div>
       <div id="hits"></div>
@@ -41,7 +41,7 @@
         </div>
         <div class="hit-content">
           <h3 class="hit-name">{{{ name }}}</h3>
-          <span class="stars">{{{stars_count}}}<p class="hit-description">{{{ reviews_count }}}</p></span> 
+          <span>{{{stars_count}}} ({{{ reviews_count }}} reviews)</span> 
           <p class="hit-description">{{{ food_type }}} | {{{ neighborhood }}} | {{ price_range }} </p>
         </div>
       </div>
@@ -50,7 +50,7 @@
 
     <!-- Stats template -->
     <script type="text/template" id="stats-template">
-      {{ nbHits }} result{{#nbHits_plural}}s{{/nbHits_plural}} found<span class="found-in"> in {{ processingTimeMS }} seconds</span>
+      <span><h3>{{ nbHits }} result{{#nbHits_plural}}s{{/nbHits_plural}} found<span class="found-in"> in {{ processingTimeMS }} seconds</h3></span>
     </script>
 
     <!-- Pagination template -->
@@ -71,7 +71,7 @@
         <ul>
           {{#values}}
           <li>
-            <a href="" class="facet-link toggle-refine {{#disjunctive}}facet-disjunctive{{/disjunctive}} {{#isRefined}}facet-refined{{/isRefined}}" data-facet="{{ facet }}" data-value="{{ name }}">
+            <a href="" class="facet-link toggle-refine" data-facet="{{ facet }}" data-value="{{ name }}">
               {{ name }}<span class="facet-count">{{ count }}</span>
             </a>
           </li>
