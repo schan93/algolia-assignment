@@ -3,21 +3,29 @@ body {
   font-size: 13px;
 }
 
+html {
+	overflow-y: scroll;
+}
+
 .welcome-container {
   margin: 50px 100px;
   background: url('/resources/graphics/background.png') #ffffff;
+}
 
+header, main, #no-results, footer {
+	width: 1100px;
+	margin: 0 auto;
 }
 
 #left-column {
 	float: left;
-	width: 23%;
+	width: 25%;
 	background-color: #ffffff;
 	border-right: 1px solid #CDCDCD;
 }
 #right-column {
-	width: 78%;
-	margin-left: 22%;
+	width: 75%;
+	margin-left: 25%;
 }
 
 
@@ -67,8 +75,8 @@ header {
 .hit-image img {
 	border-radius: 5px;
 	border-bottom: 1px solid #eee;
-	max-height: 100px;
-	max-width: 100px;
+	height: 100px;
+	width: 100px;
 }
 .hit-content {
 	font-size: 13px;
@@ -92,22 +100,24 @@ header {
 	color: #bdbdbd;
 }
 
-.hit .hit-content span.stars span.stars span {
-    background: url('/resources/graphics/stars-icons.png') 0 36px repeat-x;
-    width: 175px;
-    height: 80px;
+.stars-empty {
+	background: url('https://i.stack.imgur.com/rwkqF.png') 0 0 repeat-x;
+	width: 185px;
+  	height: 35px;
+  	display: inline-block;
 }
 
-.hit .hit-content span.stars {
-	max-width: 80px;
-    background-position: 0 0;
+.stars-empty span.stars span {
+  background: url('https://i.stack.imgur.com/rwkqF.png') 0 -36px repeat-x;
+  display: inline-block;
+  height: 35px;
 }
-
 /* PAGINATION
 // ------------------------- */
 
 #pagination {
-	margin-top: 60px;
+	background-color: #FFF;
+	padding-bottom: 80px;
 }
 #pagination ul {
 	font-size: 0;
@@ -207,14 +217,10 @@ header {
 	margin: 5px 30px;
 }
 
-.facet li:hover {
+.facet li:hover, .facet li:hover .facet-link, .facet li:hover .facet-count {
 	background-color: #2897C5;
-	color: #ffffff;
-}
-
-.facet li:active {
-	background-color: #2897C5;
-	color: #ffffff;
+  	color: #FFF;
+  	border-radius: 5px;
 }
 
 .facet-link {
@@ -223,6 +229,8 @@ header {
 	text-decoration: none;
 	display: block;
 	color: #000;
+	margin: 4px;
+	padding: .2em;
 }
 
 .facet-count:hover {
