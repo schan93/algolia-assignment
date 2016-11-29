@@ -140,7 +140,6 @@ $(document).ready(function () {
 			  $('span.stars').stars();
 			});
 		});
-
 		$.fn.stars = function() { 
 		  return this.each(function() {
 		    // Get the value
@@ -170,11 +169,17 @@ $(document).ready(function () {
 
 	//Show no results in search results section
 	function handleNoResults(content) {
+	  var rightColumn = $('#right-column');
 	  if (content.nbHits > 0) {
 	    $main.removeClass('no-results');
+	    rightColumn.width('75%');
+	    rightColumn.css('margin-left', '25%');
 	    return;
 	  }
 	  $main.addClass('no-results');
+      rightColumn.width('100%');
+      rightColumn.css('margin-left', '0%');
+            console.log("Right column: ", rightColumn);
 
 	  var filters = [];
 	  var i;
