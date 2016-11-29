@@ -10,9 +10,10 @@ $(document).ready(function () {
 	  index: RESTAURANTS_INDEX
 	};
 
+	var FACETS_STARS_COUNT = ['stars_count'];
+	var FACETS_PAYMENT_OPTIONS = ['payment_options'];
 	var FACETS_ORDER_OF_DISPLAY = ['food_type', 'stars_count', 'payment_options'];
 	var FACETS_LABELS = {food_type: 'Cuisine/Food Type', stars_count: 'Rating', payment_options: 'Payment Options'};
-
 
 	// Algolia Search Client + Helper initialization
 	var algolia = algoliasearch(APPLICATION_ID, SEARCH_ONLY_API_KEY);
@@ -58,12 +59,6 @@ $(document).ready(function () {
 	})
 	.focus();
 
-	//Clear the search if we have some information within the searchInput and give focus to the search input
-	$searchInputIcon.on('click', function(e) {
-	  e.preventDefault();
-	  $searchInput.val('').keyup().focus();
-	});
-
 	//Put the empty class on the query if the query is not empty.
 	function toggleIconEmptyInput(query) {
 	  $searchInputIcon.toggleClass('empty', query.trim() !== '');
@@ -71,7 +66,6 @@ $(document).ready(function () {
 
 	//Once we get the search results, we want to display the results and stats of our search result.
 	algoliaHelper.on('result', function(content, state) {
-		// console.log("Content: ", content);
 	  renderStats(content);
 	  renderHits(content);
 	  renderFacets(content, state);
@@ -87,13 +81,25 @@ $(document).ready(function () {
 	    var facetName = FACETS_ORDER_OF_DISPLAY[facetIndex];
 	    var facetResult = content.getFacetByName(facetName);
 	    if (!facetResult) continue;
-
-	    facetContent = {
-	      facet: facetName,
-	      title: FACETS_LABELS[facetName],
-	      values: content.getFacetValues(facetName, {sortBy: ['isRefined:desc', 'count:desc']}),
-	    };
-	    facetsHtml += facetTemplate.render(facetContent);
+	    var facetContent = {};
+	  	if($.inArray(facetName, FACETS_STARS_COUNT) !== -1) {
+	    	//I think star count would end up being a filter.
+	    	//Basically, it would show all these ratings that would be from
+	    	//0 - .4 = 0 stars
+	    	//.5 - 1.4 = 1 stars
+	    	//1.5 - 2.4 = 2 stars
+	    	//2.5 - 3.4 = 3 stars
+	    	//3.5 - 4.4 = 4 stars
+	    	//4.5 - 5 = 5 stars
+	    } else {
+	    	//Regular facets for payment or for food type
+		    facetContent = {
+		      facet: facetName,
+		      title: FACETS_LABELS[facetName],
+		      values: content.getFacetValues(facetName, {sortBy: ['isRefined:desc', 'count:desc']}),
+		    };
+		    facetsHtml += facetTemplate.render(facetContent);
+	    }
 	  }
 	  $facets.html(facetsHtml);
 	}
@@ -136,8 +142,31 @@ $(document).ready(function () {
 
 	//Function to call the $hits variable and use the hitTemplate to show the results on the page
 	function renderHits(content) {
-	  $hits.html(hitTemplate.render(content));
-	}
+		var promise = new Promise(function(resolve, reject) {
+			$hits.html(hitTemplate.render(content));
+			resolve();
+		});
+		promise.then(function(val) {
+			$(function() {
+			  $('span.stars').stars();
+			});
+		});
+
+		$.fn.stars = function() { 
+		  return this.each(function() {
+		    // Get the value
+		    var val = parseFloat($(this).html()); 
+		    // Make sure that the value is in 0 - 5 range, multiply to get width
+		    var size = Math.max(0, (Math.min(5, val))) * 36.5; 
+		    // Create stars holder
+		    var $span = $('<span> </span>').width(size); 
+		    // Replace the numerical value with stars
+		    $(this).empty().append($span);
+		  });
+		}
+	};
+
+	
 
 	function renderStats(content) {
 	  //Divide the processingTime by 1000 because need to show as seconds, not MS
