@@ -41,10 +41,12 @@
           <img src="{{ image_url }}" alt="{{ _highlightResult.name.value }}">
         </div>
         <div class="hit-content">
-          <h2 class="hit-name">{{{ name }}}</h2>
+          <h3 class="hit-name">{{{ name }}}</h3>
+          <span class="stars-count">{{{stars_count}}}</span>
           <span class="stars-empty">
               <span class="stars">{{{stars_count}}}</span>
           </span>
+          <span class="reviews-count">({{{reviews_count}}} Reviews)</span>
           <p class="hit-description">{{{ food_type }}} | {{{ neighborhood }}} | {{ price_range }} </p>
         </div>
       </div>

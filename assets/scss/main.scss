@@ -14,6 +14,7 @@ html {
 
 header, main, #no-results, footer {
 	width: 1100px;
+	height: 1000px;
 	margin: 0 auto;
 }
 
@@ -42,7 +43,7 @@ header {
 	font-size: 14px;
 	font-weight: 100;
 	width: 92%;
-	margin-left: 20px;
+	margin-left: 30px;
 	padding: 10px 10px;
 }
 #search-input, #search-input:focus {
@@ -102,14 +103,26 @@ header {
 }
 
 .stars-empty {
-	background: url('https://i.stack.imgur.com/rwkqF.png') 0 0 repeat-x;
+	background: url('/resources/graphics/stars-icons.png') 0 0 repeat-x;
 	width: 185px;
   	height: 32px;
   	display: inline-block;
 }
 
+.stars-count {
+	font-size: 16px;
+	margin-right: 5px;
+	color: #ffa500;
+}
+
+.reviews-count {
+	font-size: 14px;
+	margin-left: 5px;
+	color: #bdbdbd;
+}
+
 .hit .hit-content .stars-empty span.stars span {
-  background: url('https://i.stack.imgur.com/rwkqF.png') 0 -36px repeat-x;
+  background: url('/resources/graphics/stars-icons.png') 0 -36px repeat-x;
   display: inline-block;
   height: 32px;
 }
@@ -170,7 +183,7 @@ header {
 #stats {
 	//Make sure that stats template goes above the hits template
 	background-color: #ffffff;
-	padding: 20px 30px;
+	padding: 20px 40px;
 	//Don't show the border underneath the letters
 	overflow: hidden;
 	font-weight: bold;
@@ -181,7 +194,7 @@ header {
 	//Show the border after the found results
 	content:"";
 	position: absolute;
-	width: 39%;
+	width: 35%;
 	//Show line relative sizing to wording & 1 em away
     height: 1em;
     font-size: 14px;

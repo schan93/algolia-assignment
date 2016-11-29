@@ -82,24 +82,13 @@ $(document).ready(function () {
 	    var facetResult = content.getFacetByName(facetName);
 	    if (!facetResult) continue;
 	    var facetContent = {};
-	  	if($.inArray(facetName, FACETS_STARS_COUNT) !== -1) {
-	    	//I think star count would end up being a filter.
-	    	//Basically, it would show all these ratings that would be from
-	    	//0 - .4 = 0 stars
-	    	//.5 - 1.4 = 1 stars
-	    	//1.5 - 2.4 = 2 stars
-	    	//2.5 - 3.4 = 3 stars
-	    	//3.5 - 4.4 = 4 stars
-	    	//4.5 - 5 = 5 stars
-	    } else {
-	    	//Regular facets for payment or for food type
-		    facetContent = {
-		      facet: facetName,
-		      title: FACETS_LABELS[facetName],
-		      values: content.getFacetValues(facetName, {sortBy: ['isRefined:desc', 'count:desc']}),
-		    };
-		    facetsHtml += facetTemplate.render(facetContent);
-	    }
+    	//Regular facets for payment or for food type
+	    facetContent = {
+	      facet: facetName,
+	      title: FACETS_LABELS[facetName],
+	      values: content.getFacetValues(facetName, {sortBy: ['isRefined:desc', 'count:desc']}),
+	    };
+	    facetsHtml += facetTemplate.render(facetContent);
 	  }
 	  $facets.html(facetsHtml);
 	}
@@ -156,6 +145,7 @@ $(document).ready(function () {
 		  return this.each(function() {
 		    // Get the value
 		    var val = parseFloat($(this).html()); 
+		    val = Math.round(val * 2) / 2;
 		    // Make sure that the value is in 0 - 5 range, multiply to get width
 		    var size = Math.max(0, (Math.min(5, val))) * 36.5; 
 		    // Create stars holder
